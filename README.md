@@ -317,7 +317,7 @@ We provied 4 pretrained models in the model directory in the repostory: a C/ac4C
 ```
 python script/ac4Cnet.py --run_mode predict \
     --model_type C/m5C/ac4C \
-    --pretrained_model demo_data/model/C_m5C_ac4C.pkl \
+    --pretrained_model model/C_m5C_ac4C.pkl \
     --feature_file demo_data/test.feature.tsv \
     --predict_result demo_data/test.prediction.tsv
 
@@ -339,26 +339,27 @@ The following is an example of the prediction output. The results include column
 
 ```
     transcript_id           site    motif   read_id                                 prediction   probability
-    LOC_Os08g44480.1        218     GACCA   b32995bf-9975-4ff6-86c6-29c900f321d6    C            0.11261273
-    LOC_Os08g44480.1        219     ACCAG   b32995bf-9975-4ff6-86c6-29c900f321d6    m5C          0.95669556
-    LOC_Os08g44480.1        223     GGCCA   b32995bf-9975-4ff6-86c6-29c900f321d6    C            4.225098e-14
-    LOC_Os08g44480.1        224     GCCAC   b32995bf-9975-4ff6-86c6-29c900f321d6    C            6.3074664e-11
-    LOC_Os08g44480.1        226     CACCT   b32995bf-9975-4ff6-86c6-29c900f321d6    C            5.365696e-05
-    LOC_Os08g44480.1        227     ACCTA   b32995bf-9975-4ff6-86c6-29c900f321d6    C            1.9726056e-06
-    LOC_Os08g44480.1        230     TACGA   b32995bf-9975-4ff6-86c6-29c900f321d6    C            0.00010113342
-    LOC_Os08g44480.1        233     GACAA   b32995bf-9975-4ff6-86c6-29c900f321d6    C            4.4892527e-11
-    LOC_Os08g44480.1        237     AGCTG   b32995bf-9975-4ff6-86c6-29c900f321d6    C            5.053165e-10
-    LOC_Os08g44480.1        240     TGCTC   b32995bf-9975-4ff6-86c6-29c900f321d6    C            3.4177435e-16
-    LOC_Os08g44480.1        242     CTCTC   b32995bf-9975-4ff6-86c6-29c900f321d6    C            0.031539176
-    LOC_Os08g44480.1        244     CTCCG   b32995bf-9975-4ff6-86c6-29c900f321d6    C            0.08256312
-    LOC_Os08g44480.1        245     TCCGA   b32995bf-9975-4ff6-86c6-29c900f321d6    C            0.0004769674
-    LOC_Os08g44480.1        252     TGCCC   b32995bf-9975-4ff6-86c6-29c900f321d6    C            2.2711574e-30
-    LOC_Os08g44480.1        253     GCCCA   b32995bf-9975-4ff6-86c6-29c900f321d6    C            7.629347e-21
+    LOC_Os07g03730.1        560     GGCAA   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.0077731693
+    LOC_Os07g03730.1        563     AACGT   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.00074390427
+    LOC_Os07g03730.1        566     GTCGA   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.0019359465
+    LOC_Os07g03730.1        569     GACGG   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.014535325
+    LOC_Os07g03730.1        572     GGCGA   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    ac4C         0.86820465
+    LOC_Os07g03730.1        577     ATCTC   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.0008406919
+    LOC_Os07g03730.1        579     CTCCC   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.033249497
+    LOC_Os07g03730.1        580     TCCCT   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.024631226
+    LOC_Os07g03730.1        581     CCCTA   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.0748754
+    LOC_Os07g03730.1        584     TACTA   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.4033113
+    LOC_Os07g03730.1        588     AGCTA   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.37496027
+    LOC_Os07g03730.1        591     TACTA   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.20457618
+    LOC_Os07g03730.1        603     TACGT   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.000665458
+    LOC_Os07g03730.1        607     TACGG   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.0102844415
+    LOC_Os07g03730.1        610     GGCTA   5bb201ce-50e6-4261-8f8b-2b2b51bb9ea6    C            0.0144964745
+
 ```
 We also provide a script to convert results from transcriptome location to genome location.
 
 ```
-python scripts/transcriptome_location_to_genome_location.py \
+python script/transcriptome_location_to_genome_location.py \
     --input predictions.tsv \
     --output predictions_genome_loc.tsv \
     --gff /path/to/your/genome_annotation.gtf
@@ -375,24 +376,22 @@ Argument name                       Required    Default              Description
     
     Results:
     transcript_id           site    chr     site            motif   prediction   probability
-    LOC_Os06g36590.1        826     Chr6    21495252        ATCGG   C            4.780567e-05
-    LOC_Os06g36590.1        831     Chr6    21495257        ATCTT   C            3.1403553e-09
-    LOC_Os06g36590.1        836     Chr6    21495262        GTCGT   m5C          0.998418
-    LOC_Os06g36590.1        850     Chr6    21495276        GTCTG   C            2.6889346e-08
-    LOC_Os06g36590.1        853     Chr6    21495279        TGCTA   C            7.5095416e-11
-    LOC_Os06g36590.1        856     Chr6    21495282        TACAT   C            0.013431426
-    LOC_Os06g36590.1        871     Chr6    21495297        TGCCT   C            2.3783017e-05
-    LOC_Os06g36590.1        872     Chr6    21495298        GCCTT   C            8.105786e-09
-    LOC_Os06g36590.1        877     Chr6    21495303        TGCTT   C            1.7306347e-12
-    LOC_Os06g36590.1        881     Chr6    21495307        TGCCT   C            1.315495e-09
-    LOC_Os06g36590.1        882     Chr6    21495308        GCCTT   C            6.700999e-10
-    LOC_Os06g36590.1        888     Chr6    21495314        GGCAA   C            4.613933e-09
-    LOC_Os06g36590.1        891     Chr6    21495317        AACCT   C            6.412733e-07
-    LOC_Os06g36590.1        892     Chr6    21495318        ACCTG   C            2.1830398e-05
-    LOC_Os06g36590.1        901     Chr6    21495445        TACAG   C            0.009539205
-    LOC_Os06g36590.1        912     Chr6    21495456        TACTT   C            0.3794193
-    LOC_Os06g36590.1        916     Chr6    21495460        TGCAG   C            0.08652508
-    LOC_Os06g36590.1        922     Chr6    21495466        ATCTA   C            5.3866494e-05
+    LOC_Os07g03730.1        560     Chr7    1524212         GGCAA   C            0.0077731693
+    LOC_Os07g03730.1        563     Chr7    1524215         AACGT   C            0.00074390427
+    LOC_Os07g03730.1        566     Chr7    1524218         GTCGA   C            0.0019359465
+    LOC_Os07g03730.1        569     Chr7    1524221         GACGG   C            0.014535325
+    LOC_Os07g03730.1        572     Chr7    1524224         GGCGA   ac4C         0.86820465
+    LOC_Os07g03730.1        577     Chr7    1524229         ATCTC   C            0.0008406919
+    LOC_Os07g03730.1        579     Chr7    1524231         CTCCC   C            0.033249497
+    LOC_Os07g03730.1        580     Chr7    1524232         TCCCT   C            0.024631226
+    LOC_Os07g03730.1        581     Chr7    1524233         CCCTA   C            0.0748754
+    LOC_Os07g03730.1        584     Chr7    1524236         TACTA   C            0.4033113
+    LOC_Os07g03730.1        588     Chr7    1524240         AGCTA   C            0.37496027
+    LOC_Os07g03730.1        591     Chr7    1524243         TACTA   C            0.20457618
+    LOC_Os07g03730.1        603     Chr7    1524255         TACGT   C            0.000665458
+    LOC_Os07g03730.1        607     Chr7    1524259         TACGG   C            0.0102844415
+    LOC_Os07g03730.1        610     Chr7    1524262         GGCTA   C            0.0144964745
+
 ```
 
  By aggregating all the predictions for each site, we can derive a consensus or summary prediction for that specific genomic location using the script ``read_level_prediction_to_site_level_prediction.py``
@@ -401,7 +400,7 @@ Argument name                       Required    Default              Description
 In the given command, please replace ``read_level_prediction.tsv`` with the converted results obtained from the ``transcriptome_location_to_genome_location.py`` script. Specify the desired output file name using the ``--output`` option. The script will then aggregate the read-level predictions to derive site-level predictions. The resulting predictions will include the count of modified bases, considering the predictions with probability values ranging from 0.5 to 0.95 as the cutoff range. The total base count is located in the last column.
 
 ```
-python scripts/read_level_prediction_to_site_level_prediction.py \
+python script/read_level_prediction_to_site_level_prediction.py \
     --input read_level_prediction.tsv \
     --output site_level_prediction.tsv
 

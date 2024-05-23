@@ -138,7 +138,14 @@ def predict(model,dataloader):
     test_acc = 0.
     y_test = []
     y_pred = []
-    label_dict={0:"unmod",1:"mod"}
+    if args.model_type=="C/ac4C":
+        label_dict={0:"C",1:"ac4C"}
+    elif args.model_type=="C/m5C":
+        label_dict={0:"C",1:"m5C"}
+    elif args.model_type=="m5C/ac4C":
+        label_dict={0:"m5C",1:"ac4C"}
+    elif args.model_type=="C/m5C/ac4C":
+        label_dict={0:"C",1:"m5C",2:"ac4C"}
 
     for i,(batch_x, batch_y) in enumerate(dataloader):
 
@@ -161,7 +168,14 @@ def predict(model,dataloader):
         pred = torch.max(out, 1)[1].numpy()
 
         out=torch.softmax(out,dim=1)
-        probabilities=out.detach().numpy()[:,1]
+        if args.model_type=="C/ac4C":
+            probabilities=out.detach().numpy()[:,1]
+        elif args.model_type=="C/m5C":
+            probabilities=out.detach().numpy()[:,1]
+        elif args.model_type=="m5C/ac4C":
+            probabilities=out.detach().numpy()[:,1]
+        elif args.model_type=="C/m5C/ac4C":
+            probabilities=out.detach().numpy()[:,2]
 
         for j in range(len(batch_y)):
 
